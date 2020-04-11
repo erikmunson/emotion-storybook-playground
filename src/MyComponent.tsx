@@ -4,7 +4,7 @@ import { css } from '@emotion/core';
 const getStuff = (thing: number) => `${thing + 12} things`;
 
 export interface IMyComponentProps {
-  color: 'red' | 'white';
+  color: 'red' | 'black';
 }
 
 export const MyComponent = ({ color }: IMyComponentProps) => {
