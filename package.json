@@ -4,9 +4,10 @@
   "module": "dist/main.js",
   "typings": "dist/main.d.ts",
   "scripts": {
-    "build:dev": "rollup -c",
-    "build:prod": "NODE_ENV=production rollup -c",
-    "dev": "rollup -c -w",
+    "clean": "./node_modules/rimraf/bin.js dist",
+    "build:dev": "npm run clean && rollup -c",
+    "build:prod": "npm run clean && NODE_ENV=production rollup -c",
+    "dev": "npm run clean && rollup -c -w",
     "pretest": "npm run build",
     "prepublishOnly": "npm run build:prod",
     "storybook": "start-storybook"
@@ -29,6 +30,7 @@
     "@types/react": "^16.9.13",
     "acorn-jsx": "^5.2.0",
     "babel-loader": "^8.1.0",
+    "rimraf": "^3.0.2",
     "rollup": "^2.6.0",
     "rollup-plugin-babel": "^4.4.0",
     "ts-loader": "^6.2.2",
