@@ -6,6 +6,7 @@ import replace from '@rollup/plugin-replace';
 import jsx from 'acorn-jsx';
 import babel from 'rollup-plugin-babel';
 import typescript from '@rollup/plugin-typescript';
+import svgr from '@svgr/rollup';
 
 export default [
   {
@@ -14,6 +15,7 @@ export default [
     acornInjectPlugins: [jsx()],
     plugins: [
       commonjs(),
+      svgr(),
       babel({
         extensions: ['.ts', '.tsx'],
       }),
