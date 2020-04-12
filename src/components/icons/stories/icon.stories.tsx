@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { select } from '@storybook/addon-knobs';
+import { select, text } from '@storybook/addon-knobs';
 
 import { iconsByName } from '../iconsByName';
 import { Icon, IIconProps, IconNames } from '../Icon';
@@ -21,7 +21,7 @@ type IIconGridProps = Partial<IIconProps> & {
 const iconAppearances = ['light', 'neutral', 'dark'] as const;
 const iconSizes = ['extraSmall', 'small', 'medium', 'large', 'extraLarge'] as const;
 
-const PlaygroundLayout = ({ summary, grid }: { summary: React.ReactNode; grid: React.ReactNode }) => (
+const GalleryLayout = ({ summary, grid }: { summary: React.ReactNode; grid: React.ReactNode }) => (
   <div
     css={{
       display: 'flex',
@@ -62,7 +62,28 @@ const IconGrid = ({ icons, appearance, size, onClick }: IIconGridProps) => (
         }}
         onClick={() => onClick(icon)}
       >
-        <Icon name={icon} appearance={appearance} size={size} />
+        <div
+          css={{
+            display: 'flex',
+            flexDirection: 'column',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minWidth: '150px',
+          }}
+        >
+          <Icon name={icon} appearance={appearance} size={size} />
+          <div
+            css={{
+              fontSize: '13px',
+              fontWeight: 400,
+              color: iconColors.neutral,
+              marginTop: '12px',
+            }}
+          >
+            {icon}
+          </div>
+        </div>
       </div>
     ))}
   </div>
@@ -71,19 +92,22 @@ const IconGrid = ({ icons, appearance, size, onClick }: IIconGridProps) => (
 export const gallery = () => {
   const [iconName, setIconName] = useState<IconNames>('manualJudgement');
 
-  const allIcons = Object.keys(iconsByName).sort() as IconNames[];
-  const appearance = select('Appearance', iconAppearances, 'neutral');
+  const appearance = select('Appearance', iconAppearances, 'dark');
   const size = select('Size', iconSizes, 'large');
+  const filter = text('Filter', '').toLowerCase();
+
+  const allIcons = Object.keys(iconsByName).sort() as IconNames[];
+  const filteredIcons = filter ? allIcons.filter(name => name.toLowerCase().includes(filter.toLowerCase())) : allIcons;
 
   return (
-    <PlaygroundLayout
+    <GalleryLayout
       summary={
         <>
           <div css={{ fontSize: '20px', fontWeight: 700, marginBottom: '24px' }}>{iconName}</div>
           <Icon name={iconName} appearance={appearance} size={size} />
         </>
       }
-      grid={<IconGrid icons={allIcons} onClick={icon => setIconName(icon)} appearance={appearance} size={size} />}
+      grid={<IconGrid icons={filteredIcons} onClick={icon => setIconName(icon)} appearance={appearance} size={size} />}
     />
   );
 };
