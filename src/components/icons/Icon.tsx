@@ -1,14 +1,23 @@
 import React, { memo } from 'react';
 
-import { iconColors } from '../colors';
+import { iconColors } from '../../colors';
 
 import { iconsByName } from './iconsByName';
 
 export type IconNames = keyof typeof iconsByName;
 
 export type IIconProps = {
+  /**
+   * Check the Gallery to see all the available icons
+   **/
   name: IconNames;
+  /**
+   * @default "neutral"
+   **/
   appearance?: 'light' | 'neutral' | 'dark';
+  /**
+   * @default "small"
+   **/
   size?: 'extraSmall' | 'small' | 'medium' | 'large' | 'extraLarge';
   // DEPRECATED
   // use `appearance` and `size` instead

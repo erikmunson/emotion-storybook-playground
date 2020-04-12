@@ -1,1 +1,3 @@
-export * from './icons';
+import './utils/loadFont';
+
+export * from './components/icons';
