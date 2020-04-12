@@ -1,5 +1,5 @@
 import 'source-sans-pro/source-sans-pro.css';
-import spinnakerLogo from './assets/spinnakerLogo.png';
+import spinnakerLogo from '../src/assets/spinnakerLogo.png';
 
 import { addParameters, addDecorator } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
@@ -9,9 +9,16 @@ const spinnakerTheme = create({
   base: 'light',
 
   fontBase: '"Source Sans Pro", sans-serif',
-  brandTitle: 'Sail',
+  brandTitle: 'Ahoy',
   brandImage: spinnakerLogo,
 });
+
+// addDecorator(story => (
+//   <>
+//     <GlobalStyle />
+//     {story()}
+//   </>
+// ));
 
 addDecorator(withKnobs);
 
