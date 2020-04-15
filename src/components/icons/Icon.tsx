@@ -18,22 +18,22 @@ export type IIconProps = {
   /**
    * @default "small"
    **/
-  size?: 'extraSmall' | 'small' | 'medium' | 'large' | 'extraLarge';
+  size?: 'xs' | 's' | 'm' | 'l' | 'xl';
   // DEPRECATED
   // use `appearance` and `size` instead
   legacyColor?: string;
   legacySize?: string;
 };
 
-const DEFAULT_SIZE = 'small';
+const DEFAULT_SIZE = 's';
 const DEFAULT_APPEARANCE = 'neutral';
 
 const pxDimensionsBySize: { [size: string]: string } = {
-  extraSmall: '16px',
-  small: '20px',
-  medium: '24px',
-  large: '32px',
-  extraLarge: '40px',
+  xs: '16px',
+  s: '20px',
+  m: '24px',
+  l: '32px',
+  xl: '40px',
 };
 
 const logInvalidIconError = (name: string) => {

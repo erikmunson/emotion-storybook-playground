@@ -19,7 +19,7 @@ type IIconGridProps = Partial<IIconProps> & {
 };
 
 const iconAppearances = ['light', 'neutral', 'dark'] as const;
-const iconSizes = ['extraSmall', 'small', 'medium', 'large', 'extraLarge'] as const;
+const iconSizes = ['xs', 's', 'm', 'l', 'xl'] as const;
 
 const GalleryLayout = ({ summary, grid }: { summary: React.ReactNode; grid: React.ReactNode }) => (
   <div
@@ -93,7 +93,7 @@ export const gallery = () => {
   const [iconName, setIconName] = useState<IconNames>('manualJudgement');
 
   const appearance = select('Appearance', iconAppearances, 'dark');
-  const size = select('Size', iconSizes, 'large');
+  const size = select('Size', iconSizes, 'l');
   const filter = text('Filter', '').toLowerCase();
 
   const allIcons = Object.keys(iconsByName).sort() as IconNames[];
@@ -173,7 +173,7 @@ export const appearances = () => {
               backgroundColor: backgroundsByAppearance[appearance],
             }}
           >
-            <Icon name="canaryPass" size="large" appearance={appearance} />
+            <Icon name="canaryPass" size="l" appearance={appearance} />
           </div>
           <div
             css={{
