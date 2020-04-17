@@ -65,7 +65,7 @@ const IconGrid = ({ icons, appearance, size, onClick }: IIconGridProps) => (
       >
         <div css={[flex.v.container, flex.v.center, flex.v.middle, flex.wrap, { minWidth: '150px' }]}>
           <Icon name={icon} appearance={appearance} size={size} />
-          <div css={[typography.weights.regular, margin.m.top, { fontSize: '13px', color: colors.icons.neutral }]}>
+          <div css={[typography.weights.standard, margin.m.top, { fontSize: '13px', color: colors.icons.neutral }]}>
             {icon}
           </div>
         </div>
@@ -103,7 +103,7 @@ export const sizes = () => {
       {iconSizes.map(size => (
         <div css={[flex.v.container, flex.v.center, flex.v.middle, flex.wrap, margin.m.all]}>
           <Icon name="manualJudgement" size={size} />
-          <div css={[typography.weights.regular, margin.m.top, { fontSize: '13px', color: colors.icons.neutral }]}>
+          <div css={[typography.weights.standard, margin.m.top, { fontSize: '13px', color: colors.icons.neutral }]}>
             {size}
           </div>
         </div>
@@ -137,7 +137,7 @@ export const appearances = () => {
           >
             <Icon name="canaryPass" size="l" appearance={appearance} />
           </div>
-          <div css={[typography.weights.regular, margin.m.top, { fontSize: '13px', color: colors.icons.neutral }]}>
+          <div css={[typography.weights.standard, margin.m.top, { fontSize: '13px', color: colors.icons.neutral }]}>
             {appearance}
           </div>
         </div>

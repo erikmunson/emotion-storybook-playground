@@ -12,7 +12,7 @@ export const typography = {
       '-webkit-font-smoothing': 'auto',
       '-moz-osx-font-smoothing': 'auto',
     }),
-    regular: css({
+    standard: css({
       fontWeight: 400,
       '-webkit-font-smoothing': 'auto',
       '-moz-osx-font-smoothing': 'auto',

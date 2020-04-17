@@ -1,3 +1,4 @@
+const path = require('path');
 const createCompiler = require('@storybook/addon-docs/mdx-compiler-plugin');
 
 module.exports = {
@@ -16,6 +17,12 @@ module.exports = {
         },
         {
           loader: require.resolve('react-docgen-typescript-loader'),
+          options: {
+            // This docgen loader has no idea how to find the right tsconfig,
+            // so we have to explicitly tell it where to look for cross-file
+            // type dependencies to work (i.e. importing types)
+            tsconfigPath: path.resolve(__dirname, '../tsconfig.json'),
+          },
         },
       ],
     });

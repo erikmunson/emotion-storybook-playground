@@ -41,4 +41,9 @@ export const colors = {
       warning: '#FAECAC',
     },
   },
+
+  typography: {
+    standard: '#444444',
+    light: '#666666',
+  },
 } as const;

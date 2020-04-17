@@ -36,6 +36,13 @@ const styles = {
     gridColumn: 1,
     gridRow: 1,
   }),
+  inactive: css({ backgroundColor: colors.status.standard.inactive }),
+  neutral: css({ backgroundColor: colors.status.standard.neutral }),
+  info: css({ backgroundColor: colors.status.standard.info }),
+  progress: css({ backgroundColor: colors.status.standard.progress }),
+  success: css({ backgroundColor: colors.status.standard.success }),
+  warning: css({ backgroundColor: colors.status.standard.warning }),
+  error: css({ backgroundColor: colors.status.standard.error }),
   in: {
     opacity: 1,
     transform: 'scale(1.0, 1.0)',
@@ -56,13 +63,7 @@ export const StatusBubble = memo(({ iconName, appearance, size }: IStatusBubbleP
   const transitions = useTransition(iconName, null, transitionConfig);
 
   return (
-    <div
-      css={[
-        styles.bubble,
-        spacing.padding[paddingBySize[size]].all,
-        { backgroundColor: colors.status.standard[appearance] },
-      ]}
-    >
+    <div css={[styles.bubble, styles[appearance], spacing.padding[paddingBySize[size]].all]}>
       {transitions.map(({ item, key, props }) => (
         <animated.div key={key} css={styles.iconContainer} style={props}>
           <Icon name={item} appearance="light" size={size} />
