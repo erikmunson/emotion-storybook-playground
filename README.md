@@ -1,1 +1,0 @@
-# emotion-storybook-playground
