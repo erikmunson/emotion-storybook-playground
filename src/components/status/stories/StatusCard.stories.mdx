@@ -1,0 +1,43 @@
+import { Meta, Subtitle, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+
+import { StatusCard } from '../StatusCard';
+
+<Meta
+  title="Status/StatusCard/Introduction"
+  component={StatusCard}
+  parameters={{
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# StatusCard
+
+<Subtitle>
+  Status cards are useful for explaining the status of a specific dimension or attribute in moderate detail. They are
+  well suited for areas where there might be multiple dimensions of status to communicate at the same time, as their
+  recognizable color and visual consistency makes it easier to scan down a list of cards.
+</Subtitle>
+
+### Appearances
+
+There are 7 statuses to pick from: `inactive`, `neutral`, `info`, `progress`, `success`, `warning`, and `error`.
+
+<Preview>
+  <Story id="status-statuscard--appearances" />
+</Preview>
+
+### Descriptions
+
+Status cards can optionally include a `description`, which allows for structured explanations. For example, you might
+use the title to briefly summarize what happened, and the description to add secondary details like who did it and
+additional explanatory metadata. Descriptions — like titles — can be either a simple text string or a React element/fragment.
+
+<Preview>
+  <Story id="status-statuscard--with-description" />
+</Preview>
+
+# Props
+
+<Props of={StatusCard} />
