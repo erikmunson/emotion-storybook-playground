@@ -1,0 +1,41 @@
+import { Meta, Subtitle, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+
+import { StatusBubble } from '../StatusBubble';
+
+<Meta
+  title="Status/StatusBubble"
+  component={StatusBubble}
+  parameters={{
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# StatusBubble
+
+<Subtitle>
+  Status bubbles are useful for quickly conveying the overall status of a specific dimension or attribute. Given their
+  compact and information-dense design, they are especially appropriate in areas with limited screen real estate or
+  where adding too much explanatory detail for each variety of status could harm overall usability.
+</Subtitle>
+
+### Sizes
+
+There are 5 bubble sizes to choose from: `xs`, `s`, `m`, `l`, and `xl`.
+
+<Preview>
+  <Story id="status--sizes" />
+</Preview>
+
+### Appearances
+
+There are 7 statuses to pick from: `inactive`, `neutral`, `info`, `progress`, `success`, `warning`, and `error`.
+
+<Preview>
+  <Story id="status--appearances" />
+</Preview>
+
+# Props
+
+<Props of={StatusBubble} />

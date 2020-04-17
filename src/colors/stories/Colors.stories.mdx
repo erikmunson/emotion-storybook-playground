@@ -1,6 +1,6 @@
 import { Meta, Subtitle, Story, Preview, Props, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
 
-import { statusColors, validationColors, iconColors } from '../index';
+import { colors } from '../index';
 
 <Meta
   title="Colors"
@@ -29,7 +29,7 @@ Useful as a backdrop for icons
 or where a higher level of contrast with surrounding elements is desired.
 
 <ColorPalette>
-  {Object.entries(statusColors.standard).map(([name, color]) => (
+  {Object.entries(colors.status.standard).map(([name, color]) => (
     <ColorItem title={name} colors={[color]} />
   ))}
 </ColorPalette>
@@ -40,7 +40,7 @@ Useful as a background color on larger elements,
 or where a lower level of contrast with surrounding elements is desired.
 
 <ColorPalette>
-  {Object.entries(statusColors.light).map(([name, color]) => (
+  {Object.entries(colors.status.light).map(([name, color]) => (
     <ColorItem title={name} colors={[color]} />
   ))}
 </ColorPalette>
@@ -54,7 +54,7 @@ They should only be used in that context.
 ### Standard
 
 <ColorPalette>
-  {Object.entries(validationColors.standard).map(([name, color]) => (
+  {Object.entries(colors.validation.standard).map(([name, color]) => (
     <ColorItem title={name} colors={[color]} />
   ))}
 </ColorPalette>
@@ -62,7 +62,7 @@ They should only be used in that context.
 ### Light
 
 <ColorPalette>
-  {Object.entries(validationColors.light).map(([name, color]) => (
+  {Object.entries(colors.validation.light).map(([name, color]) => (
     <ColorItem title={name} colors={[color]} />
   ))}
 </ColorPalette>
@@ -72,7 +72,7 @@ They should only be used in that context.
 For more information about how to style icons, check the Icon section of the docs.
 
 <ColorPalette>
-  {Object.entries(iconColors).map(([name, color]) => (
+  {Object.entries(colors.icons).map(([name, color]) => (
     <ColorItem title={name} colors={[color]} />
   ))}
 </ColorPalette>

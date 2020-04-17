@@ -1,22 +1,22 @@
 import React, { memo } from 'react';
 
-import { iconColors } from '../../colors';
+import { colors } from '../../colors';
 
 import { iconsByName } from './iconsByName';
 
-export type IconNames = keyof typeof iconsByName;
+export type IconName = keyof typeof iconsByName;
 
 export type IIconProps = {
   /**
    * Check the Gallery to see all the available icons
    **/
-  name: IconNames;
+  name: IconName;
   /**
    * @default "neutral"
    **/
   appearance?: 'light' | 'neutral' | 'dark';
   /**
-   * @default "small"
+   * @default "s"
    **/
   size?: 'xs' | 's' | 'm' | 'l' | 'xl';
   // DEPRECATED
@@ -49,7 +49,7 @@ export const Icon = memo(({ name, appearance, size, legacyColor, legacySize }: I
   }
 
   const width = legacySize ?? pxDimensionsBySize[size || DEFAULT_SIZE];
-  const fill = legacyColor ? `var(--color-${legacyColor})` : iconColors[appearance || DEFAULT_APPEARANCE];
+  const fill = legacyColor ? `var(--color-${legacyColor})` : colors.icons[appearance || DEFAULT_APPEARANCE];
 
   return <Component style={{ width, fill }} />;
 });

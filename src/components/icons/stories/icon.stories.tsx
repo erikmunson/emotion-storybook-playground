@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { select, text } from '@storybook/addon-knobs';
 
+import { typography } from '../../../typography';
+import { colors } from '../../../colors';
+import { spacing } from '../../../spacing';
+import { flex } from '../../../flex';
+
 import { iconsByName } from '../iconsByName';
-import { Icon, IIconProps, IconNames } from '../Icon';
-import { iconColors } from '../../../colors';
+import { Icon, IIconProps, IconName } from '../Icon';
+
+const { margin, padding } = spacing;
 
 export default {
   title: 'Icon',
@@ -14,35 +20,28 @@ export default {
 };
 
 type IIconGridProps = Partial<IIconProps> & {
-  icons: IconNames[];
-  onClick: (icon: IconNames) => any;
+  icons: IconName[];
+  onClick: (icon: IconName) => any;
 };
 
 const iconAppearances = ['light', 'neutral', 'dark'] as const;
 const iconSizes = ['xs', 's', 'm', 'l', 'xl'] as const;
 
 const GalleryLayout = ({ summary, grid }: { summary: React.ReactNode; grid: React.ReactNode }) => (
-  <div
-    css={{
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'grow',
-      margin: '96px',
-    }}
-  >
+  <div css={[flex.v.container, flex.v.stretchWidth, { margin: '96px' }]}>
     <div
-      css={{
-        position: 'sticky',
-        top: 0,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '48px',
-        backgroundColor: '#f4f4f4',
-        boxShadow: '0 3px 5px 2px #f4f4f4',
-      }}
+      css={[
+        flex.v.container,
+        flex.v.center,
+        flex.v.middle,
+        {
+          position: 'sticky',
+          top: 0,
+          padding: '48px',
+          backgroundColor: '#f4f4f4',
+          boxShadow: '0 3px 5px 2px #f4f4f4',
+        },
+      ]}
     >
       {summary}
     </div>
@@ -51,36 +50,22 @@ const GalleryLayout = ({ summary, grid }: { summary: React.ReactNode; grid: Reac
 );
 
 const IconGrid = ({ icons, appearance, size, onClick }: IIconGridProps) => (
-  <div css={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', marginTop: '100px' }}>
+  <div css={[flex.h.container, flex.h.center, flex.wrap, { marginTop: '100px' }]}>
     {icons.map(icon => (
       <div
         key={icon}
-        css={{
-          padding: '24px',
-          cursor: 'pointer',
-          '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.6)', borderRadius: '2px' },
-        }}
+        css={[
+          padding.xl.all,
+          {
+            cursor: 'pointer',
+            '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.6)', borderRadius: '2px' },
+          },
+        ]}
         onClick={() => onClick(icon)}
       >
-        <div
-          css={{
-            display: 'flex',
-            flexDirection: 'column',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            alignItems: 'center',
-            minWidth: '150px',
-          }}
-        >
+        <div css={[flex.v.container, flex.v.center, flex.v.middle, flex.wrap, { minWidth: '150px' }]}>
           <Icon name={icon} appearance={appearance} size={size} />
-          <div
-            css={{
-              fontSize: '13px',
-              fontWeight: 400,
-              color: iconColors.neutral,
-              marginTop: '12px',
-            }}
-          >
+          <div css={[typography.weights.regular, margin.m.top, { fontSize: '13px', color: colors.icons.neutral }]}>
             {icon}
           </div>
         </div>
@@ -90,20 +75,20 @@ const IconGrid = ({ icons, appearance, size, onClick }: IIconGridProps) => (
 );
 
 export const gallery = () => {
-  const [iconName, setIconName] = useState<IconNames>('manualJudgement');
+  const [iconName, setIconName] = useState<IconName>('manualJudgement');
 
   const appearance = select('Appearance', iconAppearances, 'dark');
   const size = select('Size', iconSizes, 'l');
   const filter = text('Filter', '').toLowerCase();
 
-  const allIcons = Object.keys(iconsByName).sort() as IconNames[];
+  const allIcons = Object.keys(iconsByName).sort() as IconName[];
   const filteredIcons = filter ? allIcons.filter(name => name.toLowerCase().includes(filter.toLowerCase())) : allIcons;
 
   return (
     <GalleryLayout
       summary={
         <>
-          <div css={{ fontSize: '20px', fontWeight: 700, marginBottom: '24px' }}>{iconName}</div>
+          <div css={[typography.weights.bold, margin.xl.bottom, { fontSize: '20px' }]}>{iconName}</div>
           <Icon name={iconName} appearance={appearance} size={size} />
         </>
       }
@@ -114,27 +99,11 @@ export const gallery = () => {
 
 export const sizes = () => {
   return (
-    <div css={{ display: 'flex', justifyContent: 'center', alignItems: 'baseline' }}>
+    <div css={[flex.h.container, flex.h.center, flex.h.baseline]}>
       {iconSizes.map(size => (
-        <div
-          css={{
-            display: 'flex',
-            flexDirection: 'column',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            alignItems: 'center',
-            margin: '12px',
-          }}
-        >
+        <div css={[flex.v.container, flex.v.center, flex.v.middle, flex.wrap, margin.m.all]}>
           <Icon name="manualJudgement" size={size} />
-          <div
-            css={{
-              fontSize: '13px',
-              fontWeight: 400,
-              color: iconColors.neutral,
-              marginTop: '12px',
-            }}
-          >
+          <div css={[typography.weights.regular, margin.m.top, { fontSize: '13px', color: colors.icons.neutral }]}>
             {size}
           </div>
         </div>
@@ -145,44 +114,30 @@ export const sizes = () => {
 
 export const appearances = () => {
   const backgroundsByAppearance = {
-    dark: iconColors.light,
+    dark: colors.icons.light,
     neutral: 'transparent',
-    light: iconColors.dark,
+    light: colors.icons.dark,
   };
 
   return (
-    <div css={{ display: 'flex', justifyContent: 'center', alignItems: 'baseline' }}>
+    <div css={[flex.h.container, flex.h.center, flex.h.baseline]}>
       {iconAppearances.map(appearance => (
-        <div
-          css={{
-            display: 'flex',
-            flexDirection: 'column',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            alignItems: 'center',
-            margin: '12px',
-          }}
-        >
+        <div css={[flex.v.container, flex.v.center, flex.v.middle, flex.wrap, margin.m.all]}>
           <div
-            css={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              padding: '12px',
-              borderRadius: '50%',
-              backgroundColor: backgroundsByAppearance[appearance],
-            }}
+            css={[
+              flex.h.container,
+              flex.h.center,
+              flex.h.middle,
+              padding.m.all,
+              {
+                borderRadius: '50%',
+                backgroundColor: backgroundsByAppearance[appearance],
+              },
+            ]}
           >
             <Icon name="canaryPass" size="l" appearance={appearance} />
           </div>
-          <div
-            css={{
-              fontSize: '13px',
-              fontWeight: 400,
-              color: iconColors.neutral,
-              marginTop: '12px',
-            }}
-          >
+          <div css={[typography.weights.regular, margin.m.top, { fontSize: '13px', color: colors.icons.neutral }]}>
             {appearance}
           </div>
         </div>
